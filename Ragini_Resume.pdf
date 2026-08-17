@@ -1,0 +1,48 @@
+Ragini
+Aspiring DevOps / Cloud Engineer
+Hoshiarpur, India | ragini.hsp27@gmail.com | +91 9041803266 | LinkedIn: www.linkedin.com/in/ragini-4660922b2 |
+GitHub: github.com/Ragini4505
+PROFESSIONAL SUMMARY
+DevOps-focused Computer Science undergraduate (Cloud Computing specialization, CGPA 8.48) with hands-on experience across
+Git, Docker, Kubernetes, GitHub Actions, Terraform, and the Prometheus/Grafana monitoring stack. Built and deployed three fullstack cloud projects, including a self-healing Kubernetes deployment and a live multi-service CI/CD pipeline. Seeking an entrylevel DevOps/Cloud role to contribute to automation, deployment reliability, and scalable infrastructure.
+TECHNICAL SKILLS
+Cloud and DevOps: AWS (S3, EC2 basics), Microsoft Azure, Docker, Docker Compose, Kubernetes (Minikube), Jenkins,
+GitHub Actions, Terraform, Git and GitHub, Linux, CI/CD fundamentals
+Monitoring and Observability: Prometheus, Grafana, node_exporter
+Programming: Python, Java, C++, JavaScript
+Web and Database: HTML, CSS, React.js, Node.js, Express.js, MySQL, MongoDB (Atlas)
+Core Concepts: Networking fundamentals, virtualization, IaaS/PaaS/SaaS models
+PROJECTS
+DevOps Starter App — End-to-End CI/CD, Containerization, and Monitoring Reference Project
+GitHub Actions, Docker, Kubernetes, Terraform, Prometheus, Grafana | GitHub: github.com/Ragini4505/devops-starter-app
+• Built a two-job GitHub Actions pipeline that runs tests and automatically builds and pushes images to Docker Hub on every
+commit.
+• Deployed a four-service Docker Compose stack (app, MongoDB, Prometheus, Grafana) and a matching Kubernetes
+deployment on Minikube, demonstrating automatic self-healing after a live pod failure.
+• Provisioned infrastructure with Terraform and instrumented the app with custom Prometheus metrics, visualized in Grafana
+dashboards.
+DevOps Dashboard — Unified DevOps Monitoring and Deployment Dashboard
+React, Tailwind CSS, Chart.js, Node.js, Express.js, MongoDB Atlas | GitHub: github.com/Ragini4505/DevopsDashboard
+• Built a unified web dashboard that aggregates five separate tools, GitHub, Jenkins, Docker, Kubernetes, and Grafana, into a
+single interface.
+• Integrated live with the Jenkins REST API, Docker and Kubernetes APIs, and Prometheus, extended with node_exporter for
+real-time CPU, RAM, disk, and network metrics.
+• Designed the frontend in React with Tailwind CSS and Chart.js for build history, container and pod status, and resource-usage
+visualization.
+Tune Flow — Cloud-Based Music Streaming Platform
+Node.js, AWS S3, JavaScript | GitHub: github.com/Ragini4505/tune-flow
+• Designed and built a cloud-native music streaming app with a Node.js backend and AWS S3 for scalable audio storage and
+retrieval.
+• Implemented audio playback, file upload, and user interaction flows, architected for horizontal scalability.
+TRAINING AND CERTIFICATIONS
+DevOps Trainee, Cyber Core, Mohali | June - July 2026
+• Hands-on training in Linux fundamentals, Docker, CI/CD, Kubernetes, Git and GitHub, and Grafana.
+• Studied monitoring-system workflows and how observability tooling fits into a production deployment pipeline.
+45-Day Cloud Computing Training, Techcadd, Jalandhar | June - July 2025
+• Gained hands-on experience setting up and managing cloud infrastructure on AWS and Microsoft Azure.
+• Studied virtualization, IaaS/PaaS/SaaS service models, and cloud storage solutions.
+EDUCATION
+B. Tech Computer Science (Cloud Computing) — GNA University, Phagwara | 2023 - 2027 | CGPA: 8.48
+STRENGTHS
+• Strong problem-solving ability and quick learner, comfortable adapting to new tools and technologies; effective communicator
+with a track record of independent project delivery.

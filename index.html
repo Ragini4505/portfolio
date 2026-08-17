@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ragini Rajput — DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B121C;
+  --panel:#111A27;
+  --panel-2:#0E1621;
+  --border:#22303F;
+  --border-soft:#1A2531;
+  --text:#E6EDF3;
+  --muted:#8697A8;
+  --dim:#5B6B7C;
+  --green:#3FDB8F;
+  --green-dim:#1F5C42;
+  --amber:#F0B429;
+  --amber-dim:#5C4718;
+  --blue:#5AA6FF;
+  --radius:10px;
+  --mono:'JetBrains Mono', monospace;
+  --display:'Space Grotesk', sans-serif;
+  --sans:'Inter', sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(var(--border-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+  background-size:48px 48px;
+  opacity:0.25;
+  pointer-events:none;
+  z-index:0;
+}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1040px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
+.mono{font-family:var(--mono);}
+
+/* ---- status bar ---- */
+.statusbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(11,18,28,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+}
+.statusbar .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  height:52px;
+}
+.status-id{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:13px;}
+.dot{
+  width:8px; height:8px; border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 0 rgba(63,219,143,0.6);
+  animation:pulse 2.2s infinite;
+  flex-shrink:0;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(63,219,143,0.45);}
+  70%{box-shadow:0 0 0 6px rgba(63,219,143,0);}
+  100%{box-shadow:0 0 0 0 rgba(63,219,143,0);}
+}
+.status-id .name{color:var(--text); font-weight:500;}
+.status-id .state{color:var(--green);}
+nav{display:flex; gap:24px; font-size:13px; font-family:var(--mono);}
+nav a{color:var(--muted); transition:color .15s;}
+nav a:hover{color:var(--text);}
+.nav-toggle{display:none;}
+
+/* ---- hero ---- */
+.hero{padding:96px 0 72px; border-bottom:1px solid var(--border-soft);}
+.hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+.eyebrow{
+  font-family:var(--mono); font-size:12px; color:var(--green);
+  letter-spacing:0.06em; margin-bottom:18px; display:flex; align-items:center; gap:8px;
+}
+.eyebrow .bar{width:16px; height:1px; background:var(--green);}
+h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(34px, 5vw, 52px);
+  line-height:1.08;
+  letter-spacing:-0.01em;
+  margin-bottom:18px;
+}
+h1 span{color:var(--green);}
+.hero p.lead{
+  color:var(--muted); font-size:16px; max-width:46ch; margin-bottom:32px;
+}
+.cta-row{display:flex; gap:12px; flex-wrap:wrap;}
+.btn{
+  font-family:var(--mono); font-size:13px; padding:11px 18px;
+  border-radius:6px; border:1px solid var(--border);
+  display:inline-flex; align-items:center; gap:8px;
+  transition:border-color .15s, background .15s, transform .1s;
+}
+.btn:hover{border-color:var(--dim); background:var(--panel); transform:translateY(-1px);}
+.btn.primary{background:var(--green); color:#06120C; border-color:var(--green); font-weight:600;}
+.btn.primary:hover{background:#35c67f; border-color:#35c67f;}
+
+.term{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.term-head{
+  display:flex; align-items:center; gap:6px;
+  padding:10px 14px; border-bottom:1px solid var(--border);
+  background:var(--panel-2);
+}
+.term-head span{width:9px; height:9px; border-radius:50%; background:var(--border);}
+.term-head span:nth-child(1){background:#E5534B;}
+.term-head span:nth-child(2){background:var(--amber);}
+.term-head span:nth-child(3){background:var(--green);}
+.term-head .file{margin-left:8px; font-family:var(--mono); font-size:11px; color:var(--dim);}
+.term-body{padding:18px 16px; font-family:var(--mono); font-size:13px; color:var(--muted); min-height:180px;}
+.term-body .ln{margin-bottom:8px; white-space:pre-wrap;}
+.term-body .prompt{color:var(--green);}
+.term-body .out{color:var(--text);}
+.term-body .comment{color:var(--dim);}
+.caret{display:inline-block; width:7px; height:14px; background:var(--green); vertical-align:middle; animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ---- sections ---- */
+section{padding:72px 0;}
+.section-head{margin-bottom:36px;}
+.section-head .tag{font-family:var(--mono); font-size:12px; color:var(--dim); margin-bottom:8px;}
+.section-head h2{font-family:var(--display); font-size:26px; font-weight:600;}
+
+/* ---- project cards ---- */
+.projects-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;}
+.card{
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px; display:flex; flex-direction:column; gap:14px;
+  transition:border-color .15s, transform .15s;
+  opacity:0; transform:translateY(14px);
+}
+.card.in{opacity:1; transform:translateY(0); transition:opacity .5s ease, transform .5s ease;}
+.card:hover{border-color:var(--dim);}
+.card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
+.card-top h3{font-family:var(--display); font-size:17px; font-weight:600;}
+.badge{
+  font-family:var(--mono); font-size:11px; padding:3px 8px; border-radius:20px;
+  display:inline-flex; align-items:center; gap:5px; white-space:nowrap; border:1px solid transparent;
+}
+.badge.live{color:var(--green); background:rgba(63,219,143,0.1); border-color:var(--green-dim);}
+.badge.build{color:var(--amber); background:rgba(240,180,41,0.1); border-color:var(--amber-dim);}
+.badge i{width:6px; height:6px; border-radius:50%; background:currentColor;}
+.card p.desc{color:var(--muted); font-size:14px; flex:1;}
+.tags{display:flex; flex-wrap:wrap; gap:6px;}
+.tag{
+  font-family:var(--mono); font-size:11px; color:var(--muted);
+  border:1px solid var(--border); padding:3px 8px; border-radius:5px;
+}
+.card-link{font-family:var(--mono); font-size:12px; color:var(--blue); display:inline-flex; align-items:center; gap:6px;}
+.card-link:hover{text-decoration:underline;}
+
+/* ---- skills ---- */
+.skills-panel{
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  padding:26px 26px 14px;
+}
+.skill-row{
+  display:grid; grid-template-columns:150px 1fr;
+  gap:16px; padding:12px 0; border-bottom:1px solid var(--border-soft);
+  align-items:baseline;
+}
+.skill-row:last-child{border-bottom:none;}
+.skill-row .label{font-family:var(--mono); font-size:12px; color:var(--dim); letter-spacing:0.03em;}
+.skill-row .items{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{
+  font-family:var(--mono); font-size:12.5px; color:var(--text);
+  background:var(--panel-2); border:1px solid var(--border);
+  padding:4px 10px; border-radius:5px;
+}
+
+/* ---- pipeline / journey ---- */
+.pipeline{display:grid; grid-template-columns:repeat(4, 1fr); gap:0; position:relative;}
+.stage{
+  border:1px solid var(--border); background:var(--panel);
+  padding:20px 18px; position:relative;
+}
+.stage:not(:last-child){border-right:none;}
+.stage:first-child{border-radius:var(--radius) 0 0 var(--radius);}
+.stage:last-child{border-radius:0 var(--radius) var(--radius) 0;}
+.stage .num{font-family:var(--mono); font-size:11px; color:var(--green); margin-bottom:10px;}
+.stage h4{font-family:var(--display); font-size:15px; font-weight:600; margin-bottom:8px;}
+.stage p{font-size:13px; color:var(--muted);}
+.stage:not(:last-child)::after{
+  content:"\2192";
+  position:absolute; right:-9px; top:50%; transform:translateY(-50%);
+  width:18px; height:18px; background:var(--bg); color:var(--dim);
+  display:flex; align-items:center; justify-content:center; font-size:13px; z-index:2;
+}
+
+/* ---- education ---- */
+.edu-card{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px 26px;
+}
+.edu-card .school{font-family:var(--display); font-size:17px; font-weight:600; margin-bottom:4px;}
+.edu-card .meta{font-family:var(--mono); font-size:12.5px; color:var(--muted);}
+.edu-card .cgpa{font-family:var(--mono); font-size:13px; color:var(--green); border:1px solid var(--green-dim); padding:6px 12px; border-radius:6px;}
+
+/* ---- contact / footer ---- */
+footer{border-top:1px solid var(--border-soft); padding:60px 0 40px;}
+.contact-term{font-family:var(--mono); font-size:14px; color:var(--muted); margin-bottom:28px;}
+.contact-term .prompt{color:var(--green);}
+.contact-term .k{color:var(--blue);}
+.contact-links{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+.foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-family:var(--mono); font-size:12px; color:var(--dim); border-top:1px solid var(--border-soft); padding-top:20px;}
+
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .skill-row{grid-template-columns:1fr; gap:6px;}
+  .pipeline{grid-template-columns:1fr;}
+  .stage{border-right:1px solid var(--border) !important; border-radius:0 !important;}
+  .stage:not(:last-child)::after{content:"\2193"; right:50%; top:auto; bottom:-9px; transform:translate(50%,0);}
+  .stage:first-child{border-radius:var(--radius) var(--radius) 0 0 !important;}
+  .stage:last-child{border-radius:0 0 var(--radius) var(--radius) !important;}
+  nav{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="statusbar">
+  <div class="wrap">
+    <div class="status-id">
+      <span class="dot"></span>
+      <span class="name">ragini</span>
+      <span class="state">operational</span>
+    </div>
+    <nav>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#journey">journey</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="bar"></span>AVAILABLE FOR INTERNSHIPS &amp; ENTRY-LEVEL ROLES</div>
+      <h1>Building infrastructure that <span>heals itself</span>, ships itself, and watches itself.</h1>
+      <p class="lead">I'm Ragini — a Computer Science undergraduate specializing in Cloud Computing, learning DevOps by actually running the pipeline: CI/CD, containers, orchestration, infrastructure as code, and monitoring, end to end.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn" href="https://github.com/Ragini4505" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="Ragini_Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+      </div>
+    </div>
+    <div class="term">
+      <div class="term-head">
+        <span></span><span></span><span></span>
+        <span class="file">whoami.sh</span>
+      </div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">// 04 services running</div>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="card">
+        <div class="card-top">
+          <h3>devops-starter-app</h3>
+          <span class="badge live"><i></i>live</span>
+        </div>
+        <p class="desc">End-to-end DevOps reference project: a two-job GitHub Actions pipeline (test → build &amp; push to Docker Hub), a four-service Docker Compose stack, Kubernetes on Minikube with self-healing demonstrated live, Terraform basics, and a full Prometheus/Grafana monitoring stack with custom metrics.</p>
+        <div class="tags">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Docker Compose</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+        </div>
+        <a class="card-link" href="https://github.com/Ragini4505/devops-starter-app" target="_blank" rel="noopener">github.com/Ragini4505/devops-starter-app ↗</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>devops-dashboard</h3>
+          <span class="badge live"><i></i>live</span>
+        </div>
+        <p class="desc">A unified web dashboard that pulls GitHub, Jenkins, Docker, Kubernetes, and Grafana into one interface. Live integrations with the Jenkins REST API, Docker/Kubernetes APIs, and Prometheus extended with node_exporter for real system metrics.</p>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">MongoDB Atlas</span>
+        </div>
+        <a class="card-link" href="https://github.com/Ragini4505" target="_blank" rel="noopener">github.com/Ragini4505 ↗</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>tune-flow</h3>
+          <span class="badge live"><i></i>live</span>
+        </div>
+        <p class="desc">Cloud-native music streaming platform with a Node.js backend and AWS S3 for scalable audio storage and retrieval. Implements audio playback, file upload, and user interaction flows, architected for horizontal scalability.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">AWS S3</span>
+          <span class="tag">JavaScript</span>
+        </div>
+        <a class="card-link" href="https://github.com/Ragini4505/tune-flow" target="_blank" rel="noopener">github.com/Ragini4505/tune-flow ↗</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>sky-summarizer</h3>
+          <span class="badge live"><i></i>live</span>
+        </div>
+        <p class="desc">NLP-driven app that condenses lengthy text into concise summaries to improve content accessibility, with integrated text-to-speech to convert summaries into audio. Built around an efficient, scalable text-processing pipeline.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Text-to-Speech API</span>
+        </div>
+        <a class="card-link" href="https://github.com/Ragini4505/sky-summarizer" target="_blank" rel="noopener">github.com/Ragini4505/sky-summarizer ↗</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">// stack.yml</div>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-panel">
+      <div class="skill-row">
+        <div class="label">CI / CD</div>
+        <div class="items"><span class="chip">GitHub Actions</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="label">CONTAINERS</div>
+        <div class="items"><span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Kubernetes</span><span class="chip">Minikube</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="label">INFRASTRUCTURE</div>
+        <div class="items"><span class="chip">Terraform</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="label">MONITORING</div>
+        <div class="items"><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">Loki</span><span class="chip">Promtail</span><span class="chip">node_exporter</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="label">CLOUD / DATA</div>
+        <div class="items"><span class="chip">MongoDB Atlas</span><span class="chip">AWS S3</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="label">LANGUAGES</div>
+        <div class="items"><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">React.js</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">// build pipeline</div>
+      <h2>Learning journey</h2>
+    </div>
+    <div class="pipeline">
+      <div class="stage">
+        <div class="num">STAGE 01</div>
+        <h4>Docker &amp; CI/CD</h4>
+        <p>Containerized applications and built GitHub Actions pipelines from scratch.</p>
+      </div>
+      <div class="stage">
+        <div class="num">STAGE 02</div>
+        <h4>Kubernetes</h4>
+        <p>Deployed to Minikube and demonstrated self-healing under real failure conditions.</p>
+      </div>
+      <div class="stage">
+        <div class="num">STAGE 03</div>
+        <h4>Terraform &amp; monitoring</h4>
+        <p>Provisioned infrastructure as code and stood up a Prometheus/Grafana observability stack.</p>
+      </div>
+      <div class="stage">
+        <div class="num">STAGE 04</div>
+        <h4>Dashboard project</h4>
+        <p>Bringing every tool into one unified interface — the current build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">// record</div>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="school">B.Tech, Computer Science — Cloud Computing Specialization</div>
+        <div class="meta">GNA University · Expected graduation 2027</div>
+      </div>
+      <div class="cgpa">CGPA 8.48</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">// reach out</div>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-term"><span class="prompt">$</span> contact <span class="k">--github</span> Ragini4505 <span class="k">--linkedin</span> ragini-.</div>
+    <div class="contact-links">
+      <a class="btn" href="https://github.com/Ragini4505" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/ragini-4660922b2" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="./Ragini_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+    </div>
+    <div class="foot-bottom">
+      <span>ragini/ portfolio</span>
+      <span>status: operational</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const lines = [
+  {p:"$ ", t:"whoami", cls:"out"},
+  {p:"", t:"Ragini — B.Tech CS (Cloud Computing), GNA University", cls:"out"},
+  {p:"", t:"", cls:"comment"},
+  {p:"$ ", t:"cat focus.txt", cls:"out"},
+  {p:"", t:"DevOps: CI/CD, Docker, Kubernetes, Terraform, monitoring", cls:"out"},
+  {p:"", t:"", cls:"comment"},
+  {p:"$ ", t:"status --check", cls:"out"},
+  {p:"", t:"4 projects deployed · self-healing k8s demo passed", cls:"out"},
+];
+const body = document.getElementById('termBody');
+let i = 0;
+function typeLine(){
+  if(i >= lines.length){
+    const caret = document.createElement('span');
+    caret.className = 'caret';
+    body.appendChild(caret);
+    return;
+  }
+  const l = lines[i];
+  const div = document.createElement('div');
+  div.className = 'ln';
+  if(l.p){
+    const pr = document.createElement('span');
+    pr.className = 'prompt mono';
+    pr.textContent = l.p;
+    div.appendChild(pr);
+  }
+  const span = document.createElement('span');
+  span.className = l.cls;
+  div.appendChild(span);
+  body.appendChild(div);
+  let c = 0;
+  const txt = l.t;
+  function type(){
+    if(c <= txt.length){
+      span.textContent = txt.slice(0, c);
+      c++;
+      setTimeout(type, txt.length ? 14 : 0);
+    } else {
+      i++;
+      setTimeout(typeLine, txt.length ? 160 : 40);
+    }
+  }
+  type();
+}
+typeLine();
+
+var cardEls = document.querySelectorAll('.card');
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries) => {
+    for(var j=0;j<entries.length;j++){ if(entries[j].isIntersecting) entries[j].target.classList.add('in'); }
+  }, {threshold:0.15});
+  for(var k=0;k<cardEls.length;k++){ io.observe(cardEls[k]); }
+} else {
+  for(var k2=0;k2<cardEls.length;k2++){ cardEls[k2].classList.add('in'); }
+}
+</script>
+
+</body>
+</html>
